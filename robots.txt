@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://23-salon-ateliercuts.netlify.app/sitemap.xml

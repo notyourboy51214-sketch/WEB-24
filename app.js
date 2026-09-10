@@ -1,33 +1,54 @@
-/**
- * NOIR & CROWN Interactive Engine
- * Real-time calculation and fluid micro-interactions
- */
 
-document.addEventListener('DOMContentLoaded', () => {
-  const resultText = document.getElementById('calc-result-text');
-  const resultDesc = document.getElementById('calc-result-desc');
-  const selects = document.querySelectorAll('.select-styled');
-
-  function updateCalculation() {
-    const values = Array.from(selects).map(s => s.value);
-    
-    // Generate deterministic yet intelligent sounding simulated output
-    const primary = values[0] || '';
-    const secondary = values[1] || '';
-    const tertiary = values[2] || '';
-
-    let score = 94;
-    if (primary.includes('Industrial') || primary.includes('Commercial') || primary.includes('Heavy')) score += 5;
-    if (secondary.includes('High') || secondary.includes('Extreme') || secondary.includes('Acute')) score += 3;
-
-    resultText.textContent = 'STATUS: OPTIMAL (' + score + '% CAPACITY)';
-    resultDesc.textContent = 'Analysis: Configured for ' + primary.split('(')[0].trim() + ' with ' + secondary.split('(')[0].trim() + '. Verified 100% compliance.';
-  }
-
-  selects.forEach(sel => {
-    sel.addEventListener('change', updateCalculation);
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Initialize Lenis
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
   });
 
-  // Initial calculation
-  updateCalculation();
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // GSAP ScrollTrigger Integration
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Initial load animations
+  const tl = gsap.timeline();
+  tl.to("body", { opacity: 1, duration: 0.1 })
+    .to(".fade-in", { opacity: 1, duration: 1, ease: "power2.out" })
+    .to(".slide-up", { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=0.5")
+    .to(".slide-up-delay", { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=0.7")
+    .to(".fade-in-late", { opacity: 1, duration: 1 }, "-=0.5");
+
+  // Scroll Animations
+  gsap.utils.toArray('.stagger-up').forEach(element => {
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      },
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power3.out"
+    });
+  });
+
+  // FAQ Interaction
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
 });
+  
