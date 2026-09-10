@@ -8,9 +8,9 @@
   --text-dark: #0F172A;
   --text-light: #F1F5F9;
   --accent: #FB7185;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --border-radius: 13px;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --border-radius: 4px;
   --box-shadow: 8px 8px 0px 0px var(--primary);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
