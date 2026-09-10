@@ -10,8 +10,8 @@
   --accent: #737373;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Source Sans Pro', sans-serif;
-  --border-radius: 7px;
-  --box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --border-radius: 18px;
+  --box-shadow: 8px 8px 0px 0px var(--primary);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
